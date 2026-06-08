@@ -1,0 +1,88 @@
+# Illuminate\Session\Console
+
+Version: 13.14.0
+
+## class SessionTableCommand
+`Illuminate\Session\Console\SessionTableCommand` extends Illuminate\Console\MigrationGeneratorCommand implements Symfony\Component\Console\Command\SignalableCommandInterface
+
+```php
+function __call($method, $parameters);
+function __construct(Illuminate\Filesystem\Filesystem $files);
+function addArgument(string $name, ?int $mode = null, string $description = '', mixed $default = null, Closure|array $suggestedValues = []): static;
+function addOption(string $name, array|string|null $shortcut = null, ?int $mode = null, string $description = '', mixed $default = null, Closure|array $suggestedValues = []): static;
+function addUsage(string $usage): static;
+function alert($string, $verbosity = null);
+function anticipate($question, $choices, $default = null);
+function argument($key = null);
+function arguments();
+function ask($question, $default = null);
+function askWithCompletion($question, $choices, $default = null);
+function call($command, array $arguments = []);
+function callSilent($command, array $arguments = []);
+function callSilently($command, array $arguments = []);
+function choice($question, array $choices, $default = null, $attempts = null, $multiple = false);
+function comment($string, $verbosity = null);
+function complete(Symfony\Component\Console\Completion\CompletionInput $input, Symfony\Component\Console\Completion\CompletionSuggestions $suggestions): void;
+function confirm($question, $default = false);
+function error($string, $verbosity = null);
+function fail(Throwable|string|null $exception = null);
+function getAliases(): array;
+function getApplication(): ?Symfony\Component\Console\Application;
+function getCode(): ?callable;
+function getDefinition(): Symfony\Component\Console\Input\InputDefinition;
+function getDescription(): string;
+function getHelp(): string;
+function getHelper(string $name): Symfony\Component\Console\Helper\HelperInterface;
+function getHelperSet(): ?Symfony\Component\Console\Helper\HelperSet;
+function getLaravel();
+function getName(): ?string;
+function getNativeDefinition(): Symfony\Component\Console\Input\InputDefinition;
+function getOutput();
+function getProcessedHelp(): string;
+function getSubscribedSignals(): array;
+function getSynopsis(bool $short = false): string;
+function getUsages(): array;
+function handle();
+function handleSignal(int $signal, int|false $previousExitCode = 0): int|false;
+function hasArgument($name);
+function hasOption($name);
+function ignoreValidationErrors(): void;
+function info($string, $verbosity = null);
+function isEnabled(): bool;
+function isHidden(): bool;
+function line($string, $style = null, $verbosity = null);
+function mergeApplicationDefinition(bool $mergeArgs = true): void;
+function newLine($count = 1);
+function option($key = null);
+function options();
+function outputComponents();
+function question($string, $verbosity = null);
+function run(Symfony\Component\Console\Input\InputInterface $input, Symfony\Component\Console\Output\OutputInterface $output): int;
+function secret($question, $fallback = true);
+function setAliases(iterable $aliases): static;
+function setApplication(?Symfony\Component\Console\Application $application): void;
+function setCode(callable $code): static;
+function setDefinition(Symfony\Component\Console\Input\InputDefinition|array $definition): static;
+function setDescription(string $description): static;
+function setHelp(string $help): static;
+function setHelperSet(Symfony\Component\Console\Helper\HelperSet $helperSet): void;
+function setHidden(bool $hidden = true): static;
+function setInput(Symfony\Component\Console\Input\InputInterface $input);
+function setLaravel($laravel);
+function setName(string $name): static;
+function setOutput(Illuminate\Console\OutputStyle $output);
+function setProcessTitle(string $title): static;
+function table($headers, $rows, $tableStyle = 'default', array $columnStyles = []);
+function trap($signals, $callback);
+function untrap();
+function warn($string, $verbosity = null);
+function withProgressBar($totalSteps, Closure $callback);
+static function __callStatic($method, $parameters);
+static function flushMacros();
+static function getDefaultDescription(): ?string;
+static function getDefaultName(): ?string;
+static function hasMacro($name);
+static function macro($name, $macro);
+static function mixin($mixin, $replace = true);
+```
+
