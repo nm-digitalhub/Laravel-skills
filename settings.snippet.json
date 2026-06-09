@@ -1,5 +1,5 @@
 {
-  "//": "Merge this into your project's .claude/settings.json (commit to share with the team). Copy the hooks/ scripts into .claude/hooks/ first and keep them executable (chmod +x).",
+  "//": "Merge this into your project's .claude/settings.json (commit to share with the team). Copy the laravel-skills/hooks/ scripts into .claude/hooks/ first and keep them executable (chmod +x).",
   "hooks": {
     "PreToolUse": [
       {

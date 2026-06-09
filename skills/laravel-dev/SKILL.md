@@ -1,5 +1,6 @@
 ---
 name: laravel-dev
+license: MIT
 description: Expert guidance for developing, debugging, and reviewing Laravel 13 applications. Use this skill whenever working in a Laravel codebase — writing or editing models, migrations, controllers, jobs, commands, events, mail, notifications, policies, Eloquent queries, Livewire components, Pest/PHPUnit tests, API resources, or service providers; running artisan; designing application architecture (Actions, Services, Form Requests, API Resources, multi-tenancy, feature flags); or answering "how do I do X in Laravel". Trigger this even when the user only mentions a Laravel concept (Eloquent, Blade, Livewire, Flux, Filament, queue, Horizon, Sanctum, Pennant, Pest) without saying the word "Laravel". Grounds all answers in the official Laravel 13.x API reference and the project's actual code instead of guessing.
 metadata:
   version: "1.0"
