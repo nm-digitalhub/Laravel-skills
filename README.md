@@ -1,43 +1,58 @@
-# Laravel skills for Claude Code
+# Laravel 13 Skills for Claude Code
 
-A composable set of Claude Code skills for Laravel 13 development, plus deterministic hook guardrails.
+[![skills.sh](https://skills.sh/b/nm-digitalhub/Laravel-skills)](https://skills.sh/nm-digitalhub/Laravel-skills)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## What's inside
+A bundle of [Agent Skills](https://agentskills.io) for building **Laravel 13**
+applications with Claude Code — grounded in the official Laravel 13.x API
+reference (1,519 classes bundled) and your project's real code, not guesses.
 
-| Skill | Type | Invocation | Notes |
-|---|---|---|---|
-| `laravel-dev` | Knowledge hub | Auto (Claude loads when relevant) | Conventions + routes to `references/`. Standard-compliant, portable. |
-| `laravel-test` | Action | `/laravel-test [filter]` or auto | Detects Pest/PHPUnit, runs, iterates to green. Injects `php artisan about`. |
-| `laravel-scaffold` | Action | `/laravel-scaffold [Entity] [fields]` or auto | Generates a feature via artisan, matching project conventions. Carries a skill-scoped Pint hook. |
-| `laravel-review` | Action | `/laravel-review` | Read-only diff review in a forked Explore agent. |
-| `hooks/` + `settings.snippet.json` | Guardrails | Project hooks | Auto-Pint on PHP writes; block destructive DB commands. |
+Stack focus: Laravel 13 · Livewire 4 (SFC) · Flux UI v2 · Pest · Pint.
 
-## Install (Claude Code)
-
-Copy the skill directories to either location:
-- Personal (all projects): `~/.claude/skills/`
-- Project (commit to share): `<repo>/.claude/skills/`
+## Install
 
 ```bash
-cp -r laravel-dev laravel-test laravel-scaffold laravel-review ~/.claude/skills/
+# Everything, into Claude Code (project scope)
+npx skills add nm-digitalhub/Laravel-skills --all -a claude-code
+
+# Or pick skills
+npx skills add nm-digitalhub/Laravel-skills --list
+npx skills add nm-digitalhub/Laravel-skills --skill laravel-dev -a claude-code
 ```
 
-Skills hot-reload — they're available without restarting (a brand-new top-level skills dir needs a restart). Verify with `What skills are available?` or `/laravel-test`.
+## Skills
 
-### Enable the hook guardrails (recommended)
+| Skill | What it does | Manual command |
+| --- | --- | --- |
+| `laravel-dev` | Knowledge hub. Auto-loads on any Laravel work or "how do I X in Laravel" question. Ships the full Laravel 13.x API reference + a PHP reflection generator to regenerate it for your installed version. | — |
+| `laravel-test` | Detects Pest vs PHPUnit, runs the suite, iterates to green. | `/laravel-test [filter]` |
+| `laravel-scaffold` | Scaffolds a full feature via `artisan make:*`, matching project conventions. | `/laravel-scaffold <Name>` |
+| `laravel-review` | Read-only diff review for Laravel anti-patterns (mass assignment, N+1, unscoped tenant queries, missing validation/authorization, irreversible migrations). | `/laravel-review` |
+| `laravel-audit` | Deep, **read-only** audit of a whole module or the **live production source** (not just a diff). Verifies against the installed API and separates deliberate conventions from real bugs using consistency/docs/tests evidence. Detects prod-vs-git drift and config-cache drift. | `/laravel-audit [path\|prod\|drift]` |
 
-```bash
-mkdir -p .claude/hooks
-cp hooks/*.sh .claude/hooks/ && chmod +x .claude/hooks/*.sh
-# then merge settings.snippet.json into .claude/settings.json
-```
+## Hooks (optional, recommended)
 
-Project skills/hooks require accepting the workspace trust dialog. Review the scripts before trusting.
+`hooks/` + `settings.snippet.json` wire two project hooks for Claude Code:
 
-## Standard vs Claude Code extensions
+- **guard-migrations.sh** — `PreToolUse` block on `migrate:fresh/refresh/reset`
+  and `db:wipe` (hard stop, independent of model judgment).
+- **pint-on-write.sh** — `PostToolUse` auto-runs `./vendor/bin/pint` on every
+  `.php` file written.
 
-`laravel-dev` uses only the open [Agent Skills](https://agentskills.io) frontmatter (`name`, `description`, `allowed-tools`) — portable to other tools. The action skills intentionally use Claude Code extensions (`disable-model-invocation`, `context: fork`, `agent`, `argument-hint`, `hooks`, dynamic `` !`cmd` `` injection), which are honored by Claude Code CLI.
+Copy `hooks/*.sh` into `.claude/hooks/` (`chmod +x`) and merge
+`settings.snippet.json` into `.claude/settings.json`. See `CLAUDE.md` for the
+full setup checklist.
 
-## Tune for your stack
+## Compatibility
 
-References default to Livewire 4 SFC + Flux v2 + Pest + Spatie teams + Pennant. They instruct Claude to detect and follow the actual repo first, so they're safe on other stacks — but edit `laravel-dev/references/*.md` to match your conventions exactly.
+- `laravel-dev` is a clean, portable [Agent Skills standard](https://agentskills.io)
+  skill — works across any compliant agent.
+- `laravel-test`, `laravel-scaffold`, and `laravel-review` use Claude Code
+  extension fields (`argument-hint`, `hooks`, `context`, `agent`). They run
+  fully in **Claude Code**; other agents ignore those fields. Each carries a
+  `compatibility:` note to that effect.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Bundled API signatures are derived from the
+MIT-licensed Laravel framework.

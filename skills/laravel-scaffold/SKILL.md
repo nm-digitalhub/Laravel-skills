@@ -1,5 +1,6 @@
 ---
 name: laravel-scaffold
+license: MIT
 description: Scaffolds a complete Laravel feature (model, migration, factory, policy, controller/action, Form Request, resource, and test) using artisan generators, matching the project's existing conventions. Use when the user wants to create a new model, resource, CRUD feature, or set of related Laravel files.
 compatibility: Designed for Claude Code (uses skill-scoped hooks). Requires php artisan generators and Pint.
 argument-hint: "[EntityName] [brief description of fields/behavior]"

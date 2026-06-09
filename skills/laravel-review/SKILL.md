@@ -1,5 +1,6 @@
 ---
 name: laravel-review
+license: MIT
 description: Reviews uncommitted or staged Laravel changes for framework-specific bugs and anti-patterns (mass assignment, N+1, unscoped tenant queries, fat controllers, missing validation/authorization, secrets, irreversible migrations). Use when the user asks to review their Laravel diff, check changes before committing, or audit recent work.
 compatibility: Designed for Claude Code (uses context:fork with the Explore agent). Requires git.
 disable-model-invocation: true

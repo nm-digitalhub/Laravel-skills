@@ -1,5 +1,6 @@
 ---
 name: laravel-test
+license: MIT
 description: Runs the Laravel test suite — auto-detecting Pest vs PHPUnit and the project's test command — then iterates on failures until green. Use when the user asks to run tests, check whether tests pass, run a specific test/filter, or verify a change in a Laravel project.
 compatibility: Designed for Claude Code. Requires php and the project's test runner (Pest or PHPUnit) plus Pint.
 argument-hint: "[optional --filter, test name, or path]"

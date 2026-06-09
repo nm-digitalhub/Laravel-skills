@@ -6,7 +6,7 @@ gives a human a one-time setup checklist.
 
 <!--
   Maintainer note (stripped from Claude's context, visible only on Read):
-  Source package = repository root. Ship this CLAUDE.md at the project root or
+  Source package = laravel-skills/. Ship this CLAUDE.md at the project root or
   in .claude/. Re-run the test harness (run-tests.py) after editing any skill.
 -->
 
@@ -25,6 +25,7 @@ gives a human a one-time setup checklist.
 | `laravel-test` | "run tests", "are tests green", verify a change. | `/laravel-test [filter]` |
 | `laravel-scaffold` | "create a model / CRUD / feature". | `/laravel-scaffold <Name>` |
 | `laravel-review` | "review my diff / changes before commit". Manual only. | `/laravel-review` |
+| `laravel-audit` | deep read-only audit of a whole module or the live production source; "is this a bug or intentional?", pre-deploy, prod-vs-git drift. Manual only. | `/laravel-audit [path\|prod\|drift]` |
 
 `laravel-dev` grounds answers in the official Laravel 13.x API reference and the
 project's real code — never in guesses. The complete API (1,519 classes,
@@ -60,19 +61,19 @@ Run from the project root. Use `.claude/` for a team-shared install, or
 ```bash
 # 1. Skills
 mkdir -p .claude/skills
-cp -R laravel-dev .claude/skills/
-cp -R laravel-test .claude/skills/
-cp -R laravel-scaffold .claude/skills/
-cp -R laravel-review .claude/skills/
+cp -R laravel-skills/laravel-dev .claude/skills/
+cp -R laravel-skills/laravel-test .claude/skills/
+cp -R laravel-skills/laravel-scaffold .claude/skills/
+cp -R laravel-skills/laravel-review .claude/skills/
 
 # 2. Hooks
 mkdir -p .claude/hooks
-cp hooks/*.sh .claude/hooks/
+cp laravel-skills/hooks/*.sh .claude/hooks/
 chmod +x .claude/hooks/*.sh
 
 # 3. Settings — merge settings.snippet.json into .claude/settings.json
 #    (it wires the two hooks above). Merge by hand if the file already exists.
-cp settings.snippet.json .claude/settings.snippet.json
+cp laravel-skills/settings.snippet.json .claude/settings.snippet.json
 ```
 
 Then verify inside a Claude Code session:
